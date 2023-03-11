@@ -10,11 +10,13 @@ def send_telegram_message(content: str) -> None:
     d = {
         "chat_id": str(TG_USER_ID),
         "text": "<b>"
-        + "Please Check Below Orphaned Files:"
+        + "qBittorrent Orphaned Files Check"
         + "</b>"
         + "\n<pre>"
+        + "Please Check Below Orphaned Files:"
+        + "----------------------------------"
         + content
-        + "</pre>\n",
+        + "</pre>",
         "disable_web_page_preview": "false",
         "parse_mode": "HTML",
     }
