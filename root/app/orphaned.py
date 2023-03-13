@@ -30,7 +30,7 @@ for torrent in client.torrents.info():
 files_not_used = '\n'.join(files_in_download_folder)
 print("Please Check Below Orphaned Files:")
 print(files_not_used)
-if len(files_not_used)>100:
+if len(files_in_download_folder)>100:
      send_telegram_message('flie list is too long,please check log!')
 elif files_not_used:
     send_telegram_message(files_not_used)
