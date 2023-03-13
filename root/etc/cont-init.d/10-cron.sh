@@ -14,6 +14,6 @@ Initializing cron
 $CRON
 "
 crontab -d # Delete any existing crontab.
-echo "$CRON /usr/bin/flock -n /app/run.lock /app/run.sh" >/tmp/crontab.tmp
+echo "$CRON /usr/bin/flock -xn /app/orphaned.lock /usr/bin/python3 /app/orphaned.py" >/tmp/crontab.tmp
 crontab /tmp/crontab.tmp
 rm /tmp/crontab.tmp

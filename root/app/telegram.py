@@ -14,7 +14,7 @@ def send_telegram_message(content: str) -> None:
         + "</b>"
         + "\n<pre>"
         + "Please Check Below Orphaned Files:"
-        + "----------------------------------"
+        + "----------------------------------\n"
         + content
         + "</pre>",
         "disable_web_page_preview": "false",
