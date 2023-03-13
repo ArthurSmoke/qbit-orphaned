@@ -3,7 +3,7 @@ from qbittorrentapi import Client
 from telegram import send_telegram_message
 
 DOWNLOADS_PATH = "/downloads"
-IGNORE_LIST = filter(None, os.environ['IGNORE_KEYWORD'].split(','))
+IGNORE_LIST = os.environ['IGNORE_KEYWORD'].split(',')
 HOST = os.environ['QBT_HOST']
 USER = os.environ['QBT_USER']
 PASS = os.environ['QBT_PASS']
@@ -30,5 +30,7 @@ for torrent in client.torrents.info():
 files_not_used = '\n'.join(files_in_download_folder)
 print("Please Check Below Orphaned Files:")
 print(files_not_used)
-if files_not_used:
+if len(files_not_used)>100:
+     send_telegram_message('flie list is too long,please check log!')
+elif files_not_used:
     send_telegram_message(files_not_used)
