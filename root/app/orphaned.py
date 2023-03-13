@@ -8,10 +8,9 @@ HOST = os.environ['QBT_HOST']
 USER = os.environ['QBT_USER']
 PASS = os.environ['QBT_PASS']
 
-
 # find all files in download folder
 files_in_download_folder=[]
-print(IGNORE_LIST)
+print("Scanning Download Folder")
 for dir_path, _, file_names in os.walk(DOWNLOADS_PATH):
 	for file_name in file_names:
 		full_path = os.path.join(dir_path, file_name)
@@ -20,17 +19,23 @@ for dir_path, _, file_names in os.walk(DOWNLOADS_PATH):
 		if not any(ignore_text in relative_path for ignore_text in IGNORE_LIST):
 		    files_in_download_folder.append(relative_path)
 
-
 # remove files used by torrents in qBit
 client = Client(host=HOST, username=USER, password=PASS)
+print("Scanning qBittorrent Torrents")
 for torrent in client.torrents.info():
     for file in torrent.files:
         if file.name in files_in_download_folder:
             files_in_download_folder.remove(file.name)
 files_not_used = '\n'.join(files_in_download_folder)
-print("Please Check Below Orphaned Files:")
-print(files_not_used)
-if len(files_in_download_folder)>100:
-     send_telegram_message('flie list is too long,please check log!')
-elif files_not_used:
-    send_telegram_message(files_not_used)
+
+# output and notify
+if files_not_used:
+    if len(files_in_download_folder)>100:
+        send_telegram_message('flie list is too long,please check log!')
+    elif:
+        send_telegram_message(files_not_used)
+    print("Please Check Below Orphaned Files:")
+    print(files_not_used)
+else:
+    print("No Orphaned Files Find")
+
