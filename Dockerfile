@@ -5,7 +5,7 @@ ENV \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
     # Run on the hour by default.
     CRON="0 * * * *" \
-    IGNORE_KEYWORD="" \
+    IGNORE_KEYWORD="DS_Store" \
     QBT_HOST="localhost:8080" \
     QBT_USER="admin" \
     QBT_PASS="adminadmin" \

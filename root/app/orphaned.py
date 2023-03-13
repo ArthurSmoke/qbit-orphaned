@@ -11,6 +11,7 @@ PASS = os.environ['QBT_PASS']
 
 # find all files in download folder
 files_in_download_folder=[]
+print(IGNORE_LIST)
 for dir_path, _, file_names in os.walk(DOWNLOADS_PATH):
 	for file_name in file_names:
 		full_path = os.path.join(dir_path, file_name)
@@ -29,4 +30,5 @@ for torrent in client.torrents.info():
 files_not_used = '\n'.join(files_in_download_folder)
 print("Please Check Below Orphaned Files:")
 print(files_not_used)
-send_telegram_message(files_not_used)
+if files_not_used:
+    send_telegram_message(files_not_used)
